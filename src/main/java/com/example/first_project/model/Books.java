@@ -14,14 +14,17 @@ public class Books {
     @Id
     @GeneratedValue
     private Long bookId;
-
-    private String BookName;
+    private String bookName;
     private String Author;
     private String genre;
-    private boolean available;
+    private boolean borrowed;
+
 
 
     @ManyToOne
-    private Students borrower;
+    private Students borrowedBy;
+
+
+
 
 }

@@ -6,14 +6,18 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Repository
 public interface BooksRepository extends JpaRepository <Books, Long> {
 
-    List<Books> findByAvailableTrue();
+
 
     @Query("select distinct  b from Books b where " +
-            "(:searchBook is null or b.BookName = :searchBook or b.Author = :searchBook or cast(b.bookId as string) = :searchBook)")
+            "(:searchBook is null or b.bookName = :searchBook or b.Author = :searchBook or cast(b.bookId as string) = :searchBook)")
     List<Books> searchBook(@Param("searchBook") String searchBook);
+
+
+    Books findByBookName(String criminal);
 }

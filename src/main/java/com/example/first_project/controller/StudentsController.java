@@ -27,13 +27,13 @@ public class StudentsController {
     }
 
     @GetMapping("/byid")
-    public Students getById(Long id){
-        return studentsService.getById(id);
+    public Students getById(Long sid){
+        return studentsService.getById(sid);
     }
 
     @PutMapping("/updateName")
-    public Students updateName(Long id, Students students){
-        return studentsService.updateName(id, students);
+    public Students updateName(Long sid, Students students){
+        return studentsService.updateName(sid, students);
     }
 
     @GetMapping("/search")
@@ -42,8 +42,8 @@ public class StudentsController {
     }
 
     @DeleteMapping("delete")
-    public void delete(Long id){
-        studentsService.delete(id);
+    public void delete(Long sid){
+        studentsService.delete(sid);
     }
 
 

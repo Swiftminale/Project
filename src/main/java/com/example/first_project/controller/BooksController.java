@@ -2,6 +2,7 @@ package com.example.first_project.controller;
 
 import com.example.first_project.model.Books;
 import com.example.first_project.service.BooksServices;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public class BooksController {
     }
 
     @GetMapping("/BooksId")
-    public Books booksById (Long id){
+    public Books booksById(Long id){
         return booksServices.BooksById(id);
     }
 
@@ -45,5 +46,25 @@ public class BooksController {
     @DeleteMapping("/DeleteBook")
     public void delete(Long id){
         booksServices.delete(id);
+    }
+
+    @PostMapping("/{bookId}/borrow/{sid}")
+    public ResponseEntity<Books> borrowBook(@PathVariable Long bookId,@PathVariable Long sid){
+        Books borrowedBook = booksServices.borrowBook(bookId, sid);
+        if (borrowedBook != null){
+            return ResponseEntity.ok(borrowedBook);
+        }else {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @PostMapping("/{bookId}/return")
+    public ResponseEntity<Books> returnBooks(@PathVariable Long bookId){
+        Books returnedBook = booksServices.returnBooks(bookId);
+        if (returnedBook != null){
+            return ResponseEntity.ok(returnedBook);
+        }else {
+            return ResponseEntity.badRequest().build();
+        }
     }
 }
