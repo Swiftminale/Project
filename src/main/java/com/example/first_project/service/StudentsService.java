@@ -35,6 +35,7 @@ public class StudentsService {
         if (students1 != null){
             students1.setFirstname(students.getFirstname());
             students1.setLastname(students.getLastname());
+            students1.setEmail(students.getEmail());
             students1.setAge(students.getAge());
             students1.setGender(students.getGender());
             studentsRepository.save(students1);
