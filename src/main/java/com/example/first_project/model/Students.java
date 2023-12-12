@@ -1,6 +1,10 @@
 package com.example.first_project.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,15 +25,20 @@ public class Students implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sid;
-
+    @NotNull(message = "username should not be empty!")
     private String firstname;
+    @NotNull(message = "last name should not be empty!")
     private String lastname;
+    @Email(message = "invalid email addres!")
     private  String email;
+    @NotNull(message = "Requred fild")
     private String password;
     @Enumerated
     private Gender gender;
     @Enumerated
     private Role role;
+    @Min(7)
+    @Max(35)
     private Long age;
 
     @Override
